@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+
+  mercure_dev:
+    image: dunglas/mercure
+    restart: unless-stopped
+    environment:
+      - MERCURE_PUBLISHER_JWT_KEY=${MERCURE_PUBLISHER_JWT_KEY}
+      - MERCURE_SUBSCRIBER_JWT_KEY=${MERCURE_SUBSCRIBER_JWT_KEY}
+    ports:
+      - "80:80"
+      - "443:443"
+    command: /usr/bin/caddy run --config /etc/caddy/Caddyfile.dev
+
+  mercure_prod:
+    image: dunglas/mercure
+    restart: unless-stopped
+    environment:
+      - MERCURE_PUBLISHER_JWT_KEY=${MERCURE_PUBLISHER_JWT_KEY}
+      - MERCURE_SUBSCRIBER_JWT_KEY=${MERCURE_SUBSCRIBER_JWT_KEY}
+    ports:
+      - "80:80"
+      - "443:443"
